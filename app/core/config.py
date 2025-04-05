@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     Использует `pydantic.BaseSettings` для автоматической загрузки переменных окружения
     и их валидации.
     """
-    ADMIN_ID: str
+    ADMIN_ID: int
     BOT_TOKEN: str
 
     model_config = SettingsConfigDict(
