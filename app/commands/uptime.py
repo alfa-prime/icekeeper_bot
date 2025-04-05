@@ -31,7 +31,7 @@ async def get_uptime(message: Message):
 
     try:
         # Выполняем системную команду `uptime -p` (показывает, сколько работает сервер)
-        result = subprocess.check_output(["uptime", "-p"], text=True)
+        result = subprocess.check_output(["/usr/bin/uptime", "-p"], text=True)
 
         # Отправляем результат в Telegram
         await message.answer(
