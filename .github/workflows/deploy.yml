@@ -23,7 +23,7 @@ jobs:
       - name: Deploy via SSH
         run: |
           ssh ${{ secrets.USER }}@${{ secrets.HOST }} << 'EOF'
-            cd /opt/icekeeper
+            cd /opt/icekeeper_bot
             git pull origin main
             source .venv/bin/activate
             pip install -r requirements.txt
