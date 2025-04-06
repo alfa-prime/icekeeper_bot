@@ -31,20 +31,23 @@ async def get_uptime(message: Message):
         )
 
         # Получаем информацию о загрузке процессора с помощью mpstat
-        cpu_usage = subprocess.check_output("/usr/bin/mpstat 1 1", shell=True, text=True)
+        cpu_usage = subprocess.check_output(
+            "/usr/bin/mpstat -P ALL  1 1 | awk 'NR>6 {print $2, $3, $5, $12, $13}",
+            shell=True, text=True
+        )
 
         # Получаем среднюю загрузку за последние 1, 5 и 15 минут с помощью uptime
         load_avg = subprocess.check_output("/usr/bin/uptime", shell=True, text=True)
 
         # Формируем ответ
         status_message = (
-            "<b>💾 Статус сервера:</b>\n\n"
-            "<b>Uptime</b>\n"
-            f"<code>{uptime}</code>\n\n"
-            "<b>Disk</b>\n"
-            f"<code>{disk_usage}</code>\n\n"
+            "<b>Server status:</b>\n\n"
+            "<b>Uptime:</b>\n"
+            f"<code>{uptime}</code>\n"
+            "<b>Disk usage:</b>\n"
+            f"<code>{disk_usage}</code>\n"
             "<b>Загрузка процессора:</b>\n"
-            f"<pre>{cpu_usage.strip()}</pre>\n\n"
+            f"<code>{cpu_usage.strip()}</code>\n\n"
             "<b>Средняя загрузка за последние 1, 5, 15 минут:</b>\n"
             f"<pre>{load_avg.strip()}</pre>"
         )
