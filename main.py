@@ -7,7 +7,7 @@ from aiogram.filters import CommandStart
 from aiogram.types import Message
 from aiogram.client.default import DefaultBotProperties
 
-from app.core import get_settings
+from app.core import get_settings, setup_bot_commands
 from app.commands import uptime_router
 
 # Настройки
@@ -39,6 +39,7 @@ async def cmd_start(message: Message):
 # Точка входа
 async def main():
     logger.info("Запуск IceKeeper...")
+    await setup_bot_commands(bot)
     await dp.start_polling(bot)
 
 
