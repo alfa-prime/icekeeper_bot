@@ -59,13 +59,12 @@ async def get_uptime(message: Message):
             f"<code>{cpu_usage}</code>"
             "<code>────────────────────────────────────</code>\n"
             "<b>🧮 Memory:</b>\n\n"
-            f"<code>{memory_usage}</code>"
+            f"<code>{memory_usage}</code>\n"
             "<code>────────────────────────────────────</code>\n"
             "<b>💾 Disk:</b>\n\n"
             f"<code>{disk_usage}</code>"
             "<code>────────────────────────────────────</code>\n"
-            "<b>🌡️ Last reboot:</b>\n\n"
-            f"<code>{last_reboot}</code>"
+            f"<code><b>🌡️ Last reboot:</b> {last_reboot}</code>\n"
         )
         await message.answer(status_message, parse_mode=ParseMode.HTML)
     except Exception as e:
