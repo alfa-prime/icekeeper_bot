@@ -36,10 +36,17 @@ async def get_uptime(message: Message):
             shell=True, text=True
         )
 
-        memory_usage = subprocess.check_output(
-            "/usr/bin/free -h",
+        # memory_usage = subprocess.check_output(
+        #     "/usr/bin/free -h",
+        #     shell=True, text=True
+        # )
+
+        ram = subprocess.check_output(
+            "free -h | awk 'NR==2 {print $2, $3, $4, $7}'",
             shell=True, text=True
-        )
+        ).strip()
+        total, used, free, available = ram.split()
+        memory_usage = f"🧠 <b>RAM:</b>\nTotal: {total}  Used: {used}  Free: {free}  Available: {available}"
 
         # Формируем ответ
         status_message = (
