@@ -42,16 +42,16 @@ async def get_uptime(message: Message):
         # Формируем ответ
         status_message = (
             "<b>Server status:</b>\n\n"
-            "<pre>──────────────</pre>"
+            "<code>──────────────</code>"
             "<b>Uptime:</b>\n"
             f"<code>{uptime}</code>\n"
-            "<pre>──────────────</pre>"
+            "<code>──────────────</code>"
             "<b>Disk usage:</b>\n"
             f"<code>{disk_usage}</code>\n"
-            "<pre>──────────────</pre>"
+            "<code>──────────────</code>"
             "<b>CPU usage:</b>\n"
             f"<code>{cpu_usage}</code>\n\n"
-            "<pre>──────────────</pre>"
+            "<code>──────────────</code>"
             "<b>Средняя загрузка за последние 1, 5, 15 минут:</b>\n"
             f"<pre>{load_avg.strip()}</pre>"
         )
