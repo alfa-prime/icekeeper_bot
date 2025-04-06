@@ -38,7 +38,7 @@ async def get_uptime(message: Message):
 
         # Формируем ответ
         status_message = (
-            "<b>🖥️ Server status</b>\n\n"
+            "<b>🖥️ Server status</b>\n"
             "<code>────────────────────────────────────</code>\n"
             "<b>⏱️ Uptime:</b>\n\n"
             f"<code>{uptime}</code>\n"
@@ -48,8 +48,8 @@ async def get_uptime(message: Message):
             "<code>────────────────────────────────────</code>\n"
             "<b>🧠 CPU usage:</b>\n\n"
             f"<code>{cpu_usage}</code>\n"
+            "<code>────────────────────────────────────</code>\n"
         )
-
         await message.answer(status_message, parse_mode=ParseMode.HTML)
     except Exception as e:
         # В случае ошибки при выполнении команды
