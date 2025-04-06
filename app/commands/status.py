@@ -60,7 +60,7 @@ async def get_uptime(message: Message):
 
         # Формируем ответ
         status_message = (
-            f"<code><b>🖥️ Host:{hostname}\n 🌐 IP: {ip}</b></code>\n"
+            f"<code><b>🖥️ Host:{hostname}\n🌐 IP: {ip}</b></code>\n"
             "<code>────────────────────────────────────</code>\n"
             "<b>⏱️ Uptime:</b>\n\n"
             f"<code>{uptime}</code>"
