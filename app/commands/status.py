@@ -36,8 +36,8 @@ async def get_uptime(message: Message):
         # Формируем ответ
         status_message = (
             "<b>💾 Статус сервера:</b>\n\n"
-            "<b>Filesystem</b>\n"
-            f"<{disk_usage}\n\n"
+            "<b>Disk</b>\n"
+            f"{disk_usage}\n\n"
             "<b>Загрузка процессора:</b>\n"
             f"<pre>{cpu_usage.strip()}</pre>\n\n"
             "<b>Средняя загрузка за последние 1, 5, 15 минут:</b>\n"
