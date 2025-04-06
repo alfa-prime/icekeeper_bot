@@ -23,7 +23,7 @@ async def get_uptime(message: Message):
     try:
         # Получаем информацию о свободном месте на диске
         disk_usage = subprocess.check_output(
-            "/usr/bin/df -h | awk '{print $1, $2, $5}' | grep -v '/var/lib/docker/'",
+            "/usr/bin/df -h | grep '^/dev/sda1'",
             shell=True, text=True
         )
 
