@@ -8,7 +8,7 @@ from aiogram.types import Message
 from aiogram.client.default import DefaultBotProperties
 
 from app.core import get_settings, setup_bot_commands
-from app.commands import uptime_router
+from app.commands import uptime_router, status_router
 
 # Настройки
 settings = get_settings()
@@ -21,6 +21,7 @@ bot = Bot(
 
 dp = Dispatcher()
 dp.include_router(uptime_router)
+dp.include_router(status_router)
 
 # Логирование
 logging.basicConfig(level=logging.INFO)
