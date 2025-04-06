@@ -38,7 +38,7 @@ async def get_uptime(message: Message):
             f"Средняя загрузка за последние 1, 5, 15 минут:\n{load_avg.strip()}"
         )
 
-        await message.answer(status_message, parse_mode=ParseMode.MARKDOWN)
+        await message.answer(status_message, parse_mode=ParseMode.HTML)
     except Exception as e:
         # В случае ошибки при выполнении команды
         await message.answer(f"⚠️ Ошибка при получении статуса: {e}")
