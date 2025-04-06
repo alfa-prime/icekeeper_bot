@@ -26,6 +26,6 @@ jobs:
             cd /opt/icekeeper_bot
             git pull origin main
             source .venv/bin/activate
-            pip install -r requirements.txt
-            systemctl restart icekeeper.service
+#            pip install -r requirements.txt
+            systemctl restart icekeeper.service && echo "✅ IceKeeper перезапущен!"
           EOF

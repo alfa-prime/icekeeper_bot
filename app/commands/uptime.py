@@ -35,7 +35,7 @@ async def get_uptime(message: Message):
 
         # Отправляем результат в Telegram
         await message.answer(
-            f"🕒 Аптайм сервера: `{result.strip()}`",
+            f"Аптайм сервера: `{result.strip()}`",
             parse_mode="Markdown"  # Используем Markdown для оформления
         )
 
