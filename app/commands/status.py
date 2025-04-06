@@ -32,7 +32,7 @@ async def get_uptime(message: Message):
 
         # Получаем информацию о загрузке процессора с помощью mpstat
         cpu_usage = subprocess.check_output(
-            "/usr/bin/mpstat -P ALL  1 1 | awk 'NR>6 {print $2, $3, $5, $12, $13}'",
+            "/usr/bin/mpstat -P ALL  1 1 | awk 'NR>6 {print $2, $3, $5, $12, $13}' | column -t",
             shell=True, text=True
         )
 
