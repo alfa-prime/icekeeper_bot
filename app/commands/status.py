@@ -44,7 +44,8 @@ async def get_uptime(message: Message):
         memory_usage = f"Total: {total}\nUsed: {used}\nFree: {free}\nAvailable: {available}"
 
         last_reboot = subprocess.check_output(
-            "/usr/bin/who -b | awk '{print $3, $4}'"
+            "/usr/bin/who -b | awk '{print $3, $4}'",
+            shell=True, text=True
         )
 
         # Формируем ответ
@@ -52,16 +53,16 @@ async def get_uptime(message: Message):
             "<b>🖥️ Server status</b>\n"
             "<code>────────────────────────────────────</code>\n"
             "<b>⏱️ Uptime:</b>\n\n"
-            f"<code>{uptime}</code>\n"
+            f"<code>{uptime}</code>"
             "<code>────────────────────────────────────</code>\n"
             "<b>🧠 CPU:</b>\n\n"
-            f"<code>{cpu_usage}</code>\n"
+            f"<code>{cpu_usage}</code>"
             "<code>────────────────────────────────────</code>\n"
             "<b>🧮 Memory:</b>\n\n"
-            f"<code>{memory_usage}</code>\n"
+            f"<code>{memory_usage}</code>"
             "<code>────────────────────────────────────</code>\n"
             "<b>💾 Disk:</b>\n\n"
-            f"<code>{disk_usage}</code>\n"
+            f"<code>{disk_usage}</code>"
             "<code>────────────────────────────────────</code>\n"
             "<b🌡️ Last reboot:</b>\n\n"
             f"<code>{last_reboot}</code>"
