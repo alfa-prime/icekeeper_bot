@@ -46,7 +46,7 @@ async def get_uptime(message: Message):
             shell=True, text=True
         ).strip()
         total, used, free, available = ram.split()
-        memory_usage = f"🧠 <b>RAM:</b>\nTotal: {total}  Used: {used}  Free: {free}  Available: {available}"
+        memory_usage = f"Total: {total}\nUsed: {used}\nFree: {free}\nAvailable: {available}"
 
         # Формируем ответ
         status_message = (
