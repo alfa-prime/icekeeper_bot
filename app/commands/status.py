@@ -21,6 +21,9 @@ async def get_uptime(message: Message):
         return
 
     try:
+        # Получаем uptime сервера
+        uptime = subprocess.check_output("/usr/bin/uptime -p", shell=True, text=True)
+
         # Получаем информацию о свободном месте на диске
         disk_usage = subprocess.check_output(
             "/usr/bin/df -h | grep -E '^Filesystem|^/dev/vda2' | awk '{print $1, $2, $3, $4, $5}' | column -t",
@@ -36,6 +39,8 @@ async def get_uptime(message: Message):
         # Формируем ответ
         status_message = (
             "<b>💾 Статус сервера:</b>\n\n"
+            "<b>Uptime</b>\n"
+            f"<code>{uptime}</code>\n\n"
             "<b>Disk</b>\n"
             f"<code>{disk_usage}</code>\n\n"
             "<b>Загрузка процессора:</b>\n"
