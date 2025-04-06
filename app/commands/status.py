@@ -32,10 +32,13 @@ async def get_uptime(message: Message):
 
         # Формируем ответ
         status_message = (
-            f"💾 Статус сервера:\n\n"
-            f"Диск:\n{disk_usage}\n\n"
-            f"Загрузка процессора:\n{cpu_usage.strip()}\n\n"
-            f"Средняя загрузка за последние 1, 5, 15 минут:\n{load_avg.strip()}"
+            "<b>💾 Статус сервера:</b>\n\n"
+            "<b>Диск:</b>\n"
+            f"<pre>{disk_usage}</pre>\n\n"
+            "<b>Загрузка процессора:</b>\n"
+            f"<pre>{cpu_usage.strip()}</pre>\n\n"
+            "<b>Средняя загрузка за последние 1, 5, 15 минут:</b>\n"
+            f"<pre>{load_avg.strip()}</pre>"
         )
 
         await message.answer(status_message, parse_mode=ParseMode.HTML)
