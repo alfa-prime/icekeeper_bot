@@ -33,14 +33,11 @@ async def get_uptime(message: Message):
         # Выполняем системную команду `uptime -p` (показывает, сколько работает сервер)
         result = subprocess.check_output(["/usr/bin/uptime", "-p"], text=True)
         formatted = result.replace("up ", "").replace(", ", ",\n")
-        await message.answer(f"Сервер работает:\n{formatted}", parse_mode="Markdown")
-
         # Отправляем результат в Telegram
         await message.answer(
-            f"Аптайм сервера: `{result.strip()}`",
-            parse_mode="Markdown"  # Используем Markdown для оформления
+            f"Сервер работает:\n{formatted}",
+            parse_mode="Markdown"
         )
-
     except Exception as e:
         # В случае ошибки при выполнении команды
         await message.answer(f"⚠️ Ошибка при получении аптайма: {e}")
