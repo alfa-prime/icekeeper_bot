@@ -23,7 +23,7 @@ async def get_uptime(message: Message):
     try:
         # Получаем информацию о свободном месте на диске
         disk_usage = subprocess.check_output(
-            "/usr/bin/df -h | grep '^/dev/vda2' | awk '{print $1, $2, $3, $4, $5}'",
+            "/usr/bin/df -h | grep -E '^Filesystem|^/dev/vda2' | awk '{print $1, $2, $3, $4, $5}' | column -t",
             shell=True, text=True
         )
 
