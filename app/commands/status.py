@@ -64,7 +64,7 @@ async def get_uptime(message: Message):
             "<b>💾 Disk:</b>\n\n"
             f"<code>{disk_usage}</code>"
             "<code>────────────────────────────────────</code>\n"
-            "<b🌡️ Last reboot:</b>\n\n"
+            "<b>🌡️ Last reboot:</b>\n\n"
             f"<code>{last_reboot}</code>"
         )
         await message.answer(status_message, parse_mode=ParseMode.HTML)
