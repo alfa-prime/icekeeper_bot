@@ -36,17 +36,16 @@ async def get_uptime(message: Message):
             shell=True, text=True
         )
 
-        # memory_usage = subprocess.check_output(
-        #     "/usr/bin/free -h",
-        #     shell=True, text=True
-        # )
-
         ram = subprocess.check_output(
             "free -h | awk 'NR==2 {print $2, $3, $4, $7}'",
             shell=True, text=True
         ).strip()
         total, used, free, available = ram.split()
         memory_usage = f"Total: {total}\nUsed: {used}\nFree: {free}\nAvailable: {available}"
+
+        last_reboot = subprocess.check_output(
+            "/usr/bin/who -b | awk '{print $3, $4}'"
+        )
 
         # Формируем ответ
         status_message = (
@@ -55,15 +54,17 @@ async def get_uptime(message: Message):
             "<b>⏱️ Uptime:</b>\n\n"
             f"<code>{uptime}</code>\n"
             "<code>────────────────────────────────────</code>\n"
-            "<b>🧠 CPU usage:</b>\n\n"
+            "<b>🧠 CPU:</b>\n\n"
             f"<code>{cpu_usage}</code>\n"
             "<code>────────────────────────────────────</code>\n"
-            "<b>🧮 Memory usage:</b>\n\n"
+            "<b>🧮 Memory:</b>\n\n"
             f"<code>{memory_usage}</code>\n"
             "<code>────────────────────────────────────</code>\n"
-            "<b>💾 Disk usage:</b>\n\n"
+            "<b>💾 Disk:</b>\n\n"
             f"<code>{disk_usage}</code>\n"
             "<code>────────────────────────────────────</code>\n"
+            "<b🌡️ Last reboot:</b>\n\n"
+            f"<code>{last_reboot}</code>"
         )
         await message.answer(status_message, parse_mode=ParseMode.HTML)
     except Exception as e:
