@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from aiogram import Router
 from aiogram.types import Message
 from aiogram.filters import Command
@@ -24,6 +26,9 @@ async def get_uptime(message: Message):
         # Получаем uptime сервера
         uptime = subprocess.check_output("/usr/bin/uptime -p", shell=True, text=True)
 
+        hostname = subprocess.check_output("hostname", shell=True, text=True).strip()
+        ip = subprocess.check_output("hostname -I", shell=True, text=True).split()[0]
+
         # Получаем информацию о свободном месте на диске
         disk_usage = subprocess.check_output(
             "/usr/bin/df -h | grep -E '^Filesystem|^/dev/vda2' | awk '{print $1, $2, $3, $4, $5}' | column -t",
@@ -43,6 +48,11 @@ async def get_uptime(message: Message):
         total, used, free, available = ram.split()
         memory_usage = f"Total: {total}\nUsed: {used}\nFree: {free}\nAvailable: {available}"
 
+        docker_images = subprocess.check_output(
+            "docker ps --format '{{.Names}} ({{.Status}})'",
+            shell=True, text=True
+        )
+
         last_reboot = subprocess.check_output(
             "/usr/bin/who -b | awk '{print $3, $4}'",
             shell=True, text=True
@@ -50,7 +60,7 @@ async def get_uptime(message: Message):
 
         # Формируем ответ
         status_message = (
-            "<b>🖥️ Server status</b>\n"
+            f"<code><b>🖥️ Host:{hostname} ip: {ip} status</b></code>\n"
             "<code>────────────────────────────────────</code>\n"
             "<b>⏱️ Uptime:</b>\n\n"
             f"<code>{uptime}</code>"
@@ -64,7 +74,10 @@ async def get_uptime(message: Message):
             "<b>💾 Disk:</b>\n\n"
             f"<code>{disk_usage}</code>"
             "<code>────────────────────────────────────</code>\n"
-            f"<code><b>🌡️ Last reboot:</b> {last_reboot}</code>\n"
+            "<b>🐳 Docker:</b>\n\n"
+            f"<code>{docker_images}</code>"
+            "<code>────────────────────────────────────</code>\n"
+            f"<code><b>🔥 Last reboot:</b> {last_reboot}</code>\n"
         )
         await message.answer(status_message, parse_mode=ParseMode.HTML)
     except Exception as e:
