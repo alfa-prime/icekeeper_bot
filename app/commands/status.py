@@ -37,14 +37,14 @@ async def get_uptime(message: Message):
         status_message = (
             "<b>💾 Статус сервера:</b>\n\n"
             "<b>Disk</b>\n"
-            f"<pre>{disk_usage}<pre>\n\n"
+            f"<code>{disk_usage}<code>\n\n"
             "<b>Загрузка процессора:</b>\n"
             f"<pre>{cpu_usage.strip()}</pre>\n\n"
             "<b>Средняя загрузка за последние 1, 5, 15 минут:</b>\n"
             f"<pre>{load_avg.strip()}</pre>"
         )
 
-        await message.answer(status_message, parse_mode=ParseMode.MARKDOWN_V2)
+        await message.answer(status_message, parse_mode=ParseMode.HTML)
     except Exception as e:
         # В случае ошибки при выполнении команды
         await message.answer(f"⚠️ Ошибка при получении статуса: {e}")
