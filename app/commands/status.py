@@ -36,6 +36,11 @@ async def get_uptime(message: Message):
             shell=True, text=True
         )
 
+        memory_usage = subprocess.check_output(
+            "/usr/bin/free -h",
+            shell=True, text=True
+        )
+
         # Формируем ответ
         status_message = (
             "<b>🖥️ Server status</b>\n"
@@ -43,11 +48,14 @@ async def get_uptime(message: Message):
             "<b>⏱️ Uptime:</b>\n\n"
             f"<code>{uptime}</code>\n"
             "<code>────────────────────────────────────</code>\n"
-            "<b>💾 Disk usage:</b>\n\n"
-            f"<code>{disk_usage}</code>\n"
-            "<code>────────────────────────────────────</code>\n"
             "<b>🧠 CPU usage:</b>\n\n"
             f"<code>{cpu_usage}</code>\n"
+            "<code>────────────────────────────────────</code>\n"
+            "<b>🧮 Memory usage:</b>\n\n"
+            f"<code>{memory_usage}</code>\n"
+            "<code>────────────────────────────────────</code>\n"
+            "<b>💾 Disk usage:</b>\n\n"
+            f"<code>{disk_usage}</code>\n"
             "<code>────────────────────────────────────</code>\n"
         )
         await message.answer(status_message, parse_mode=ParseMode.HTML)
