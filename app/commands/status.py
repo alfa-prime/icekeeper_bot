@@ -22,7 +22,7 @@ async def get_uptime(message: Message):
 
     try:
         # Получаем информацию о свободном месте на диске
-        disk_usage = subprocess.check_output("/usr/bin/df -h", shell=True, text=True)
+        disk_usage = subprocess.check_output("/usr/bin/df -h | grep -v '/var/lib/docker/'", shell=True, text=True)
 
         # Получаем информацию о загрузке процессора с помощью mpstat
         cpu_usage = subprocess.check_output("/usr/bin/mpstat 1 1", shell=True, text=True)
